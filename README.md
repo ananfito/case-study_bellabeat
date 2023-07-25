@@ -4,10 +4,10 @@ This project is the capstone assignment for the [Google Data Analytics Professio
 
 We'll be investigating data sets of FitBit usage to make high-level marketing recommendations for Bellabeat---a high-tech company that manufactures health-focused smart products.
 
-The full case study can be viewed on [my portfolio website](), [Kaggle](https://www.kaggle.com/code/anthonynanfito/case-study-how-can-a-wellness-technology-company), or [RPubs](https://rpubs.com/anthonynanfito/bellabeat). 
+The full case study can be viewed on [my portfolio website](https://ananfito.github.io/case-study_bellabeat/bellabeat.html), [Kaggle](https://www.kaggle.com/code/anthonynanfito/case-study-how-can-a-wellness-technology-company), or [RPubs](https://rpubs.com/anthonynanfito/bellabeat). 
 
 # Contact Info
-- <a href="mailto:msg.for.anthony.p6ht3@simplelogin.com?subject=Nice Case Study Project&body=Hey Anthony, I saw your Bellabeat Case Study. Let's talk!">Email</a>
+- <a href="mailto:msg.for.anthony.p6ht3@simplelogin.com?subject=Nice Case Study Project&body=Hey Anthony, I saw your Case Study. Let's talk!">Email</a>
 - [LinkedIn](https://www.linkedin.com/in/anthonynanfito/)
 - [GitHub](https://www.github.com/ananfito)
 - [Portfolio](https://ananfito.github.io)
