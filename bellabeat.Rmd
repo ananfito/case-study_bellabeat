@@ -5,7 +5,7 @@ output:
     df_print: paged
 ---
 
-# Introduction
+## Introduction
 
 This project is the capstone assignment for the [Google Data Analytics Professional Certificate](https://www.coursera.org/professional-certificates/google-data-analytics) program. The program prepares participants for a career in data analytics with training focused on key analytical skills (data cleaning, analysis, and visualization) and tools (Excel, SQL, R Programming, Tableau).
 
@@ -13,16 +13,17 @@ We'll be investigating data sets of FitBit usage to make high-level marketing re
 
 ## Table of Contents
 
-- [Summary]
-- [Ask Phase]
-- [Prepare Phase]
-- [Process Phase]
-- [Analyze/Share Phase]
-- [Act Phase]
-- [References]
-- [Contact Info]
+- [Summary](#Summary)
+  - [Tools and Technqiues](#Tools-and-Techniques)
+  - [Recommendations](#Recommendations)
+- [Guiding Questions](#Guiding-Questions)
+- [Prepare Data](#Prepare-Data)
+- [Process Data](#Process-Data)
+- [Analysis](#Analysis)
+- [References](#References)
+- [Contact](#Contact)
 
-# Summary
+## Summary
 
 [Bellabeat](https://bellabeat.com/) was founded in 2013 and has grown to become a tech-driven wellness company for women. Since 2016, they have opened offices around the globe and launched multiple products. Their apps and devices collect data on activity, sleep, stress, and reproductive health, allowing Bellabeat to empower women with knowledge about their own health and habits.
 
@@ -36,7 +37,47 @@ timepiece with smart technology to track user
 activity, sleep, and stress. The Time watch connects to the Bellabeat app to provide you with insights into your daily wellness.
 - **Spring**: This is a water bottle that tracks daily water intake using smart technology to ensure that you are appropriately hydrated throughout the day. The Spring bottle connects to the Bellabeat app to track your hydration levels.
 
-# Ask Phase
+### Guiding questions
+
+The guiding questions for this case study are as follows: 
+
+- What are some trends in smart device usage?
+- How could these trends apply to Bellabeat customers?
+- How could these trends help influence Bellabeat marketing strategy?
+
+### Tools and Techniques
+
+The following analysis makes use of the following tools and techniques: 
+
+- R programming language and libraries; `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr`, `dplyr`, `stringr`, `lubridate` and `forcats`
+- Data transformations: joins, visualizations, summary statistics
+- Data inspection: removal of duplicate/unnessary data, change format/datatype, verify unique values
+
+### Recommendations
+
+Based on the analysis, the following are three recommendations (detailed below):
+
+- Double the Points Earned on Sundays
+- Reminder Notifcations Following Active Days
+- Encourage Rest Days
+
+#### Double the Points Earned on Sundays
+
+Based on the observations from the data, the largest trend that stands out is the increase in activity on Tuesday, Wednesday, and Thursday. Participants were most active on these days (both in terms of step count and calories burned). These also coincided with the days participants got the most sleep and spent the most time in bed. Further, we also know that Sunday is the least active day. 
+
+In order to help Bellabeat customers reach their wellness goals, it is recommended that the product team implement the ablity to add reminders when customers have lower level of activities. In particular, if we know that Sunday (and indeed Friday and Satury to some degree) is the least active day the product team could add the ability for customers to increase their wellness score by more points when they are active on Sunday. For example, perhaps activities on Sundays count for 1.5 times or 2 times the regular amount of points awarded when calculating the Wellness Score. This is intended to incentivize customers to be more active on this day.
+
+#### Reminder Notifcations Following Active Days
+
+We know that Tuesday, Wednesday, and Thursday are the most active days. The product team could implement notifications on the following days. These notifications could include reminders about how active the individual has been the past day (or previous days) and offer encouragement to keep staying active. 
+
+#### Encourage Rest Days
+
+The Wellness Score in the Bellabeat app is a number calculated on a number of different factors, including activity. We know from the data that Sunday is the least active day. Perhaps, instead of encouraging individuals to be active on this day, rest should be encourage. Bellabeat takes a hollistic approach to wellness and while it is important to be active when achieiving fitness goals rest is also an important factor. In this case, perhaps the activities on Sundays (or on another rest day specified by the customer) would count for silently less so that the overall Wellness Score isn't adversely affected.
+
+*Continue reading for the full details of this analysis that led to these recommendations.*
+
+## Guiding Questions
 
 We want to analyze the smart device usage data in order to gain insights into how people are already using their smart devices and make high-level recommends for how these trends can inform Bellabeat marketing strategy. We'll focus on the following guiding questions: 
 
@@ -44,23 +85,23 @@ We want to analyze the smart device usage data in order to gain insights into ho
 - How could these trends apply to Bellabeat customers?
 - How could these trends help influence Bellabeat marketing strategy?
 
-# Prepare Phase
+## Prepare Data
 
-## Data Description
+### Data Description
 
 The following data includes FitBit Fitness tracker data from 30 individuals over a month long period from April 12, 2016 to May 12, 2016. The data includes metrics on daily activities, calories, intensities, steps, heart rate, sleep, weight, and METs. 
 
-## License
+### License
 
 The [data](https://www.kaggle.com/datasets/arashnic/fitbit?select=Fitabase+Data+4.12.16-5.12.16) is available as a public data set by [Mobius](https://www.kaggle.com/arashnic) on [Kaggle](http://www.kaggle.com/). It was generated by respondents to a distributed survey via Amazon Mechanical Turk between 03.12.2016-05.12.2016. This data is available for us under the [CC0: Public Domain License](https://creativecommons.org/publicdomain/zero/1.0/).
 
-## Limitations
+### Limitations
 
-The data was collected from 30 FitBit users; this seems limiting and any trends found might not align with larger groups. Further, there is no demographic data within the data so it's unclear what gender, ethnicity, age, etc. these users fall into. Bellabeat is a company focused on providing smart devices specifically for women and this data might not align with the demographics of Bellabeat users. Additional data sets may be required to make a detailed analysis. 
+The data was collected from 30 FitBit users; this seems limiting and any trends found might not align with larger groups. Further, there is no demographic data within the data so it's unclear what gender, ethnicity, age, etc. these users fall into. Bellabeat is a company focused on providing smart devices specifically for women and this data might not align with the demographics of Bellabeat users. 
 
-# Process Phase
+## Process Data
 
-## Install/Open Libraries
+### Install/Open Libraries
 
 ```{r}
 library("tidyverse")
@@ -70,7 +111,7 @@ library("lubridate")
 library("corrplot")
 ```
 
-## Set up Data Frames
+### Set up Data Frames
 
 ```{r}
 daily_activity <- read.csv("datasets/dailyActivity_merged.csv")
@@ -83,11 +124,11 @@ weight <- read.csv("datasets/weightLogInfo_merged.csv")
 hr <- read.csv("datasets/heartrate_seconds_merged.csv")
 ```
 
-## Inspect Data Frames
+### Inspect Data Frames
 
 For the FitBit Fitness Tracker data set we'll focus on the following metrics for our analysis: daily activity, calories, steps, sleep, weight, and heart rate. 
 
-### Daily Activity
+#### Daily Activity
 
 ```{r}
 head(daily_activity)
@@ -96,15 +137,16 @@ sapply(daily_activity, class)
 ```
 
 **Summary Statistics**
+
 ```{r}
 daily_activity %>%
   select(TotalSteps, TotalDistance, Calories, SedentaryMinutes) %>%
   summary()
 ```
 
-### Calories
+#### Calories
 
-#### Daily (Calories)
+##### Daily (Calories)
 
 ```{r}
 head(daily_calories)
@@ -113,13 +155,14 @@ sapply(daily_calories, class)
 ```
 
 **Summary Statistics**
+
 ```{r}
 daily_calories %>%
   select(Calories) %>%
   summary()
 ```
 
-#### Hourly (Calories)
+##### Hourly (Calories)
 
 ```{r}
 head(hourly_calories)
@@ -128,15 +171,16 @@ sapply(hourly_calories, class)
 ```
 
 **Summary Statistics**
+
 ```{r}
 hourly_calories %>%
   select(Calories) %>%
   summary()
 ```
 
-### Steps
+#### Steps
 
-#### Daily (Steps)
+##### Daily (Steps)
 
 ```{r}
 head(daily_steps)
@@ -145,13 +189,14 @@ sapply(daily_steps, class)
 ```
 
 **Summary Statistics**
+
 ```{r}
 daily_steps %>%
   select(StepTotal) %>%
   summary()
 ```
 
-#### Hourly (Steps)
+##### Hourly (Steps)
 
 ```{r}
 head(hourly_steps)
@@ -160,13 +205,14 @@ sapply(hourly_steps, class)
 ```
 
 **Summary Statistics**
+
 ```{r}
 hourly_steps %>%
   select(StepTotal) %>%
   summary()
 ```
 
-### Daily Sleep
+#### Daily Sleep
 
 ```{r}
 head(sleep_day)
@@ -175,13 +221,14 @@ sapply(sleep_day, class)
 ```
 
 **Summary Statistics**
+
 ```{r}
 sleep_day %>%
   select(TotalMinutesAsleep, TotalTimeInBed) %>%
   summary()
 ```
 
-### Weight
+#### Weight
 
 ```{r}
 head(weight)
@@ -190,13 +237,14 @@ sapply(weight, class)
 ```
 
 **Summary Statistics**
+
 ```{r}
 weight %>%
   select(WeightKg, WeightPounds, Fat, BMI) %>%
   summary()
 ```
 
-### Heart rate
+#### Heart rate
 
 ```{r}
 head(hr)
@@ -205,13 +253,14 @@ sapply(hr, class)
 ```
 
 **Summary Statistics**
+
 ```{r}
 hr %>%
   select(Value) %>%
   summary()
 ```
 
-## Duplicate Data
+### Duplicate Data
 
 Let's inspect our data to see if there are any duplicate information.
 
@@ -244,7 +293,7 @@ nrow(daily_steps)
 
 This seems strange, so let's compare the summary statistics and plot the data to see if they are indeed the same. 
 
-### Summary Statistics: Daily Activity and Daily Steps
+#### Summary Statistics: Daily Activity and Daily Steps
 
 ```{r}
 daily_activity %>%
@@ -256,11 +305,12 @@ daily_steps %>%
 ```
 
 **Observations**
+
 Summary statistics are identical. 
 
-### Comparision Plots
+#### Comparision Plots
 
-#### 'TotalSteps' from 'daily_activity'
+##### 'TotalSteps' from 'daily_activity'
 
 ```{r}
 ggplot(data = daily_activity) +
@@ -270,7 +320,7 @@ ggplot(data = daily_activity) +
   ggtitle("Total Steps for 'daily_activity'")
 ```
 
-#### 'StepTotal' from 'daily_steps'
+##### 'StepTotal' from 'daily_steps'
 
 ```{r}
 ggplot(data = daily_steps) +
@@ -281,19 +331,20 @@ ggplot(data = daily_steps) +
 ```
 
 **Observations**
+
 Plot data is also identical for the columns 'TotalSteps' and 'StepTotal' for the data in 'daily_activity' and 'daily_steps', respectively. I'm not sure why the 'identical()' function returned a 'FALSE' statement previously, but let's confirm using the 'all.equal()' function.
 
-### All Equal?
+#### All Equal?
 
 ```{r}
 all.equal(daily_activity$TotalSteps, daily_steps$StepTotal)
 ```
 
-### Conclusion 
+#### Conclusion 
 
 The function 'all.equal()' does indeed return a 'TRUE' value for these columns. Based on this, it would seem that the data in these two columns is indeed the same but in a different order. 
 
-## Distinct Data
+### Distinct Data
 
 Let's inspect the data for unique values. 
 
@@ -310,7 +361,7 @@ n_distinct(weight$Id)
 
 The following data frames have the same number of distinct rows: 'daily_activity', 'daily_steps', 'daily_calories', 'hourly_calories', and 'hourly_steps'. However, the remaining data frames ('hr', 'sleep_day', and 'weight') have different distinct values. This could indicate that these data sets contained fewer participants or fewer measurements for those values.
 
-## Missing Data
+### Missing Data
 
 Let's check to see if there's any missing data values. 
 
@@ -332,9 +383,10 @@ is.na(weight)
 ```
 
 **Observations**
+
 I'm not sure what the 'Fat' column is measuring (body fat percentage?), but since there are only two values provided for the entire column it's likely that this column will need to be excluded during the analysis. 
 
-## Final Observations from the Data Inspection
+### Final Observations from the Data Inspection
 
 The data frames 'daily_activity' and 'daily_calories' both have a column called 'Calories' and this is the same data. We can ignore the data frame 'daily_calories' since it's repetitive.
 
@@ -345,9 +397,9 @@ Some of the columns have date/time data stored as a `chr` (character strings) an
 
 Further, the following data frames have a column called 'Id' with identical data: 'daily_activity', 'daily_calories', 'daily_steps', 'hourly_calories', and 'hourly_steps'. This is useful if it becomes necessary to combine the data.
 
-## Cleaning & Formatting the Data
+### Cleaning & Formatting the Data
 
-### Cleaning Checklist
+#### Cleaning Checklist
 
 After inspecting the data, the following issues need to be resolved before the analysis can begin: 
 
@@ -355,7 +407,7 @@ After inspecting the data, the following issues need to be resolved before the a
 - Change date/time columns (e.g., 'ActivityDate') from `chr` to a datetime format 
 - Merge datasets along the 'Id' parameter for easy access and analysis 
 
-### Drop Unnecessary Data
+#### Drop Unnecessary Data
 
 It was determined that the 'Fat' column in the 'weight' data frame was not needed (since it only has two values). We'll create a new data frame without it. 
 
@@ -366,9 +418,9 @@ wt <- subset(weight, select = -c(Fat))
 colnames(wt)
 ```
 
-### Change Datatype
+#### Change Datatype
 
-#### Reformat Date Columns
+##### Reformat Date Columns
 
 The following data sets have a *date* column that needs to be reformatted: 'daily_activity', 'daily_calories', and 'daily_steps'.
 
@@ -394,7 +446,7 @@ weight$DateTime <- as.POSIXct(weight$Date, format = "%m/%d/%Y")
 typeof(weight$DateTime)
 ```
 
-#### Add column for day of the week
+##### Add column for day of the week
 
 Now that we have the new column with the date, let's create a column for the day of the week too. This will allow us to anlayze the usage by the day of the week and see if there are any interesting patterns that emege. 
 
@@ -409,7 +461,7 @@ daily_steps$WeekDay <- wday(daily_steps$Date, label = TRUE, abbr = TRUE)
 head(daily_steps)
 ```
 
-#### Create Datetime Column
+##### Create Datetime Column
 
 The following data sets have a *datetime* column that needs to be reformatted: 'hourly_calories', 'hourly_steps', 'hr', 'sleep_day', and 'wt'.
 
@@ -443,7 +495,7 @@ wt$WeekDay <- wday(wt$DateTime, label = TRUE, abbr = TRUE)
 head(wt)
 ```
 
-#### Create Hour Column
+##### Create Hour Column
 
 Similarly to creating a day of the week column, we want to create an hour column for these data sets so that we can analyze the data usage by hour. 
 
@@ -458,7 +510,7 @@ wt$Hour <- hour(wt$DateTime)
 head(wt)
 ```
 
-### Merge Data Sets
+#### Merge Data Sets
 
 The final step in our cleaning phase is to merge the data sets along the 'Id' parameter. This will give us a combined data set which we can easily access and analyze. 
 
@@ -480,9 +532,9 @@ head(stats_hourly)
 
 Now that we've successfully combined the data, we'll focus our analysis on the following data frames: 'stats_daily', 'stats_hourly', 'hr', and 'wt'. 
 
-# Analyze/Share Phase
+## Analysis
 
-## Visualizations
+### Visualizations
 
 We'll start by setting plot variables for each of data frames we plan to visualize. This will make it easier to access the plot our data.
 
@@ -493,11 +545,11 @@ plt_hr <- ggplot(data = hr)
 plt_wt <- ggplot(data = wt)
 ```
 
-## Heart Rate
+### Heart Rate
 
 Let's take a look at how heart rate (hr) changes throughout the course of the day.
 
-### Boxplot: Hour vs. Heart Rate
+#### Boxplot: Hour vs. Heart Rate
 
 This plot displays each hour of the day compared to the 5-number summary distribution (box plot) of heart rate measurements from participants. 
 
@@ -512,11 +564,12 @@ plt_hr +
 ```
 
 **Observations**
+
 As to be expected, the heart rates of participants are more active during that day than at night. Interestingly, we do see outliers of both high and low heart rates throughout the day. This shows that while most people follow expectations of elevating their heart rates (presumably through exercise) at normal times of days, there are those who do not follow this expectation.
 
-## Weight
+### Weight
 
-### Histogram: Weight
+#### Histogram: Weight
 
 ```{r}
 plt_wt +
@@ -531,7 +584,7 @@ plt_wt +
 **Observations**
 Most individuals fall between 100 and 200 pounds, however there is one individual who weighs 300 pounds. 
 
-### Scatter Plot: Weight vs. BMI
+#### Scatter Plot: Weight vs. BMI
 
 ```{r}
 plt_wt +
@@ -544,9 +597,10 @@ plt_wt +
 ```
 
 **Observations**
+
 As expected, individuals with a higher weight also have a higher BMI. 
 
-### Weight Changes Tracked Over Time
+#### Weight Changes Tracked Over Time
 
 ```{r}
 plt_wt +
@@ -556,16 +610,16 @@ plt_wt +
 ```
 
 **Observations**
+
 Unfortunately, only a limited number of participants successfully tracked their weight changes over the 30 day period. However, we do see that during this period for those who tracked their changes their weight hardly changed during this time period. 
 
-While more data is needed to fully understand how weight changes over a 30-day time period, this could be useful information for individuals when setting their expectations around their weight goals. 
+While more data is needed to fully understand how weight changes over a 30-day time period, this could be useful information for individuals when setting their expectations around their weight goals.
 
+### Daily Activity
 
-## Daily Activity
+#### Steps
 
-### Steps
-
-#### Bar Graph: Week Day vs. Steps
+##### Bar Graph: Week Day vs. Steps
 
 ```{r}
 plt_daily +
@@ -576,9 +630,10 @@ plt_daily +
 ```
 
 **Observations**
+
 This graph represents the total steps for each day of the week for all 30 participants. Surprisingly, the most steps were taken on Tuesday and Wednesday with Sunday having the least amount of steps. 
 
-#### Boxplot: Week Day vs. Steps
+##### Boxplot: Week Day vs. Steps
 
 ```{r}
 plt_daily +
@@ -590,11 +645,12 @@ plt_daily +
 ```
 
 **Observations**
+
 Saturday has the widest range in step count. On average, Monday and Tuesday have more step counts than other days. Sunday seems to be the least active day. 
 
-### Calories
+#### Calories
 
-#### Scatter Plot: Steps vs. Calories
+##### Scatter Plot: Steps vs. Calories
 
 ```{r}
 plt_daily +
@@ -605,9 +661,10 @@ plt_daily +
 ```
 
 **Observations**
+
 As expected, the more steps taken the more calories burned. 
 
-#### Bar Graph: Week Day vs. Calories
+##### Bar Graph: Week Day vs. Calories
 
 ```{r}
 plt_daily +
@@ -618,13 +675,14 @@ plt_daily +
 ```
 
 **Observations**
+
 Similar to the bar graph comparing the day of the week and total steps, we see that Tuesday is the most active day for the participants with Sunday being the least active. It makes sense that Sunday could be the least active since this is the last day of the week and the day before the start of a new work week. However, I would have expected Saturday to be the most active day, not Tuesday. 
 
 My only guess as to why Tuesday is the most active is (perhaps) after having three days (Friday, Saturday, Sunday) of low activity, participants decided to be more active on Tuesday and Wednesday before slowing down again. 
 
 Further, it could also be the the weekend (Fri-Sun) tends to involve more leisure activities such as going to the movies, restaurants, etc. instead of activities that involve more physical moment. The high activity on Tuesday and Wednesday are then an attempt to make up for the lack of exercise from the previous weekend or anticipation of the upcoming weekend of leisure. 
 
-#### Boxplot: Week Day vs. Calories
+##### Boxplot: Week Day vs. Calories
 
 ```{r}
 plt_daily +
@@ -636,11 +694,12 @@ plt_daily +
 ```
 
 **Observations**
+
 Sunday has the least amount of calories burned (with a few exceptions) while the amount of calories burned from the remaining days in the week are approximately the same. This correlates with the pattern seen previously in number of steps and calories burned throughout the week.
 
-### Sleep
+#### Sleep
 
-#### Bar Graph: Week Day vs. Total Sleep
+##### Bar Graph: Week Day vs. Total Sleep
 
 ```{r}
 plt_daily +
@@ -651,9 +710,10 @@ plt_daily +
 ```
 
 **Observations**
+
 Tuesday, Wednesday, and Thursday have the most (total) amount of sleep minutes. This is the same as the days that have the most steps and calories burned. It could be that since these days required more energy they also required more sleep. 
 
-#### Bar Graph: Week Day vs. Total Time In Bed
+##### Bar Graph: Week Day vs. Total Time In Bed
 
 ```{r}
 plt_daily +
@@ -664,50 +724,24 @@ plt_daily +
 ```
 
 **Observations**
+
 Tuesday, Wednesday, and Thursday have the most time spent in bed. This coincides with the observations about time spent asleep. It's also reasonable that the more time one spends in bed, the more time they'll be asleep. 
 
-## Summary of Observations
+### Summary of Observations
 
 - Most participants have elevated heart rates between 6am and 8pm
 - Most individuals fall between 100 and 200 pounds
 - Only eight individuals tracked their weight, but over a 30-day period it mostly stayed the same
 - Tuesday, Wednesday, and Thursday are the most active days 
 - Tuesday, Wednesday, and Thursday are also the days with the most sleep and time spent in bed
-- Sunday is the least active day 
+- Sunday is the least active day
 
-# Act Phase
+## References
 
-Let's review the questions from our ask phase before sharing recommendations for actions based on our data observations: 
-
-- What are some trends in smart device usage?
-- How could these trends apply to Bellabeat customers?
-- How could these trends help influence Bellabeat marketing strategy?
-
-Based on the analysis above, the following are three recommendations (detailed below):
-
-- Double the Points Earned on Sundays
-- Reminder Notifcations Following Active Days
-- Encourage Rest Days
-
-## Double the Points Earned on Sundays
-
-Based on the observations from the data, the largest trend that stands out is the increase in activity on Tuesday, Wednesday, and Thursday. Participants were most active on these days (both in terms of step count and calories burned). These also coincided with the days participants got the most sleep and spent the most time in bed. Further, we also know that Sunday is the least active day. 
-
-In order to help Bellabeat customers reach their wellness goals, it is recommended that the product team implement the ablity to add reminders when customers have lower level of activities. In particular, if we know that Sunday (and indeed Friday and Satury to some degree) is the least active day the product team could add the ability for customers to increase their wellness score by more points when they are active on Sunday. For example, perhaps activities on Sundays count for 1.5 times or 2 times the regular amount of points awarded when calculating the Wellness Score. This is intended to incentivize customers to be more active on this day.
-
-## Reminder Notifcations Following Active Days
-
-We know that Tuesday, Wednesday, and Thursday are the most active days. The product team could implement notifications on the following days. These notifications could include reminders about how active the individual has been the past day (or previous days) and offer encouragement to keep staying active. 
-
-## Encourage Rest Days
-
-The Wellness Score in the Bellabeat app is a number calculated on a number of different factors, including activity. We know from the data that Sunday is the least active day. Perhaps, instead of encouraging individuals to be active on this day, rest should be encourage. Bellabeat takes a hollistic approach to wellness and while it is important to be active when achieiving fitness goals rest is also an important factor. In this case, perhaps the activities on Sundays (or on another rest day specified by the customer) would count for silently less so that the overall Wellness Score isn't adversely affected.
-
-# References
-- [Google Data Analystics Professional Certificate](https://www.coursera.org/professional-certificates/google-data-analytics)
 - [Data Source: Kaggle](https://www.kaggle.com/datasets/arashnic/fitbit?select=Fitabase+Data+4.12.16-5.12.16)
 
-# Contact Info
+## Contact
+
 - <a href="mailto:msg.for.anthony.p6ht3@simplelogin.com?subject=Nice Case Study Project&body=Hey Anthony, I saw your Bellabeat Case Study. Let's talk!">Email</a>
 - [LinkedIn](https://www.linkedin.com/in/anthonynanfito/)
 - [GitHub](https://www.github.com/ananfito)
