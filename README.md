@@ -8,11 +8,11 @@ We'll be investigating data sets of FitBit usage to make high-level marketing re
 
 ## Contents 
 
-- [Summary](#Summary)
-  - [Tools and Techniques](#Tools-and-Techniques)
-  - [Recommendations](#Recommendations)
-- [Full Case Study](#Full-Case-Study)
-- [Contact](#Contact)
+- [Summary](#summary)
+  - [Tools and Techniques](#tools-and-techniques)
+  - [Recommendations](#recommendations)
+- [Full Case Study](#full-case-study)
+- [Contact](#contact)
 
 ## Summary
 
