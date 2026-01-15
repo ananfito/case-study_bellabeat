@@ -46,7 +46,7 @@ The following analysis makes use of the following tools and techniques:
 
 ### Recommendations
 
-The analysis yielded the following recommendations:
+Based on the analysis, here are the recommendations:
 
 - Double the Points Earned on Sundays
 - Reminder Notifcations Following Active Days
